@@ -1,4 +1,4 @@
-Solink Weather App
+# Solink Weather App
 
 The goal of this application is to:
 1. Pull in live radiation and weather data (irradiance and temperature) from the Solcast API [https://docs.solcast.com.au/]
