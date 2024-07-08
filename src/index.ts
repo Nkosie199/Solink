@@ -16,7 +16,7 @@ const main = async () => {
 			port: 5432,
 			username: `${process.env.USER}`,
 			password: `${process.env.PASS}`,
-			database: 'typeorm',
+			database: `${process.env.DB}`,
 			entities: [Weather],
 			synchronize: true,
 		});
@@ -30,6 +30,8 @@ const main = async () => {
 			console.log('Now running on port 8080');
 		});
 
+		const interval: number = parseInt(process.env.INT ?? '3600000', 10);
+
 		setInterval(async () => {
 			try {
 				const response = await axios.get(`http://localhost:8080/api/weather`);
@@ -37,7 +39,7 @@ const main = async () => {
 			} catch (error) {
 				console.error('Error processing weather data:', error.message);
 			}
-		}, 3600000); // 60 minutes in milliseconds = 3600000
+		}, interval); // 60 minutes in milliseconds = 3600000
 	} catch (error) {
 		console.error(error);
 		throw new Error('Unable to connect to db');
